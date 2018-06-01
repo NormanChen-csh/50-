@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./ZeroClipboard.js"></script>
+
+    <body>
+        <textarea id="contents" cols="40" rows="5"></textarea>
+        <br />
+        <p id="test_words">你好呀</p>
+
+        <input type="button" onClick="jsCopy();" value="复制" />
+        <script type="text/javascript">
+            function jsCopy() {
+                var e = document.getElementById("contents"); //对象是contents 
+                console.log(e)
+                e.select(); //选择对象 （全选）
+                document.execCommand("Copy"); //执行浏览器复制命令
+            }
+
+            $('#test_words').zclip({
+                path: './ZeroClipboard.swf',
+                copy: function() { //复制内容  
+                    return $('#test_words').text();
+                },
+                afterCopy: function() { //复制成功  
+                    alert("复制成功")
+                }
+            });
+        </script>
+
+    </body>
+
+</html>
